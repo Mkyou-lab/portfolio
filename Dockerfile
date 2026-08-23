@@ -1,12 +1,12 @@
 # ---- Stage 1: Build Frontend ----
-FROM node:20-alpine AS frontend-builder
+FROM node:20-slim AS frontend-builder
 WORKDIR /app/frontend
 
 # Copy frontend package files
 COPY frontend/package*.json ./
 
-# Force npm to install everything including build tools
-RUN npm install --production=false
+# Install dependencies cleanly
+RUN npm install
 
 # Copy frontend source code
 COPY frontend/ ./
@@ -16,7 +16,7 @@ RUN npm run build
 
 
 # ---- Stage 2: Production Server ----
-FROM node:20-alpine
+FROM node:20-slim
 WORKDIR /app
 
 ENV NODE_ENV=production
