@@ -1,12 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  --color-primary: #6C63FF;
-  --color-secondary: #2D2B55;
-  --color-accent: #FF6584;
-  --color-dark: #1a1a2e;
-  --color-light: #f8f9fa;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background-color: #1a1a2e;
@@ -14,75 +8,26 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-html {
+* {
   scroll-behavior: smooth;
 }
 
-/* Custom UI Utility Classes */
 .btn-primary {
-  background-color: #6C63FF;
-  color: #ffffff;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-}
-
-.btn-primary:hover {
-  opacity: 0.85;
+  @apply bg-primary hover:bg-primary/80 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 cursor-pointer inline-block text-center;
 }
 
 .btn-danger {
-  background-color: #dc2626;
-  color: #ffffff;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.btn-danger:hover {
-  background-color: #b91c1c;
+  @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 cursor-pointer;
 }
 
 .input-field {
-  width: 100%;
-  background-color: #1f2937;
-  border: 1px solid #374151;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  color: #ffffff;
-  transition: all 0.2s ease;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: #6C63FF;
+  @apply w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-all;
 }
 
 .card {
-  background-color: rgba(17, 24, 39, 0.7);
-  border: 1px solid #1f2937;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  backdrop-filter: blur(4px);
+  @apply bg-gray-900/70 border border-gray-800 rounded-xl p-6 backdrop-blur-sm;
 }
 
 .section-title {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-@media (min-width: 768px) {
-  .section-title {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
+  @apply text-3xl md:text-4xl font-bold text-center mb-12;
 }
