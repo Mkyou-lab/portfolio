@@ -1,12 +1,8 @@
 {
-  "name": "portfolio",
+  "name": "portfolio-root",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "install:all": "cd backend && npm install && cd ../frontend && npm install",
-    "build": "cd frontend && npm run build",
-    "start": "cd backend && node server.js",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm run dev"
+    "start": "node backend/server.js"
   }
 }
