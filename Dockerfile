@@ -2,19 +2,16 @@
 FROM node:20-alpine AS frontend-builder
 WORKDIR /app/frontend
 
-# Force development mode in Stage 1 so npm installs Vite & build tools
-ENV NODE_ENV=development
-
 # Copy frontend package files
 COPY frontend/package*.json ./
 
-# Install ALL dependencies (including devDependencies)
-RUN npm install --include=dev
+# Force npm to install everything including build tools
+RUN npm install --production=false
 
-# Copy frontend source files
+# Copy frontend source code
 COPY frontend/ ./
 
-# Build the production React assets
+# Build the React static files
 RUN npm run build
 
 
@@ -28,16 +25,16 @@ ENV PORT=3000
 # Copy backend package files
 COPY backend/package*.json ./backend/
 
-# Install backend production dependencies only
+# Install backend production dependencies
 RUN cd backend && npm install --omit=dev
 
-# Copy backend source code
+# Copy backend source
 COPY backend/ ./backend/
 
 # Copy built frontend static files from Stage 1
 COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 
-# Create uploads folder for user images
+# Create uploads directory for user images
 RUN mkdir -p /app/backend/uploads
 
 EXPOSE 3000
